@@ -1,0 +1,54 @@
+@startuml
+
+' ERD Diagram
+entity users {
+    *id : BIGINT
+    --
+    email : VARCHAR(255)
+    password : VARCHAR(255)
+    role : VARCHAR(50)
+}
+
+entity books {
+    *id : BIGINT
+    --
+    title : VARCHAR(255)
+    description : TEXT
+    publication_year : INT
+}
+
+entity authors {
+    *id : BIGINT
+    --
+    name : VARCHAR(255)
+}
+
+entity genres {
+    *id : BIGINT
+    --
+    name : VARCHAR(255)
+}
+
+entity books_authors {
+    *book_id : BIGINT
+    *author_id : BIGINT
+}
+
+entity books_genres {
+    *book_id : BIGINT
+    *genre_id : BIGINT
+}
+
+entity user_favorite_books {
+    *user_id : BIGINT
+    *book_id : BIGINT
+}
+
+users ||--o{ user_favorite_books
+books ||--o{ user_favorite_books
+books ||--o{ books_authors
+authors ||--o{ books_authors
+books ||--o{ books_genres
+genres ||--o{ books_genres
+
+@enduml

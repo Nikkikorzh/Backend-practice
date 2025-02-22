@@ -1,0 +1,59 @@
+1) bool(false)
+2) bool(true)
+3) 10
+4) 10
+5) Вылетит ошибка.
+6) 5
+7) 10
+8) Вылетит ошибка.
+9) Выполнится успешно.
+10) Dog move
+    Animal move
+11) Animal breath
+    Animal breath
+12) Установит все зависимости согласно composer.lock
+(если есть) в vendor директорию, иначе использует composer. json и после создаст composer.lock файл.
+13) Установит все зависимости согласно composer.lock
+(если есть) в vendor директорию, иначе использует composer. json и после создаст composer.lock файл.
+14) composer require <имя пакета>
+15) 1.2.X
+16) SELECT
+        a.id AS article_id,
+        a.title AS article_title,
+        a.body AS article_body,
+        c.id AS comment_id,
+        c.title AS comment_title,
+        c.body AS comment_body,
+        c.parent_id AS comment_parent_id
+    FROM
+        articles a
+    JOIN
+        comments c ON a.id = c.article_id
+    WHERE
+        a.id = 101;
+17) SELECT
+        u.id AS user_id,
+        u.email AS email,
+        p.first_name AS first_name,
+        p.last_name AS last_name,
+        p.photo_link AS photo_link,
+        r.title AS role_title
+    FROM
+        users u
+    LEFT JOIN
+        profiles p ON u.id = p.user_id
+    LEFT JOIN
+        users_roles ur ON u.id = ur.user_id
+    LEFT JOIN
+        roles r ON ur.role_id = r.id
+    WHERE
+        u.id = 256;
+18) INSERT INTO user_roles (user_id, role_id) VALUES (225, 8);
+19) UPDATE user_profiles
+    SET photo_link = 'new-link'
+    WHERE user_id = 67;
+20) DELETE FROM users_roles WHERE user_id = 78;
+    DELETE FROM profiles WHERE user_id = 78;
+    DELETE FROM comments WHERE author_id = 78;
+    DELETE FROM articles WHERE author_id = 78;
+    DELETE FROM users WHERE id = 78;

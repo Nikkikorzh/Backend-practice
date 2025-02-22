@@ -1,0 +1,56 @@
+@startuml
+
+' Class Diagram
+class User {
+    - id: Integer
+    - email: String
+    - password: String
+    - role: String
+    + getFavorites(): Set<Book>
+    + addFavorite(): void
+    + removeFavorite(): void
+}
+
+class Book {
+    - id: Integer
+    - title: String
+    - description: String
+    - publicationYear: int
+    + getAuthors(): Set<Author>
+    + getGenres(): Set<Genre>
+}
+
+class Author {
+    - id: Integer
+    - name: String
+}
+
+class Genre {
+    - id: Integer
+    - name: String
+}
+
+class SecurityConfig {
+    + securityFilterChain(): SecurityFilterChain
+    + authenticationManager(): AuthenticationManager
+}
+
+class JwtAuthenticationFilter {
+    + doFilterInternal(): void
+}
+
+class UserService {
+    + getFavoriteBooks(userId: Long): Set<Book>
+    + addFavoriteBook(userId: Long, bookId: Long): User
+    + removeFavoriteBook(userId: Long, bookId: Long): User
+    + isUserAuthorized(userId: Long, email: String): boolean
+}
+
+User "1" -- "*" UserFavoriteBooks
+UserFavoriteBooks "*" -- "1" Book
+Book "1" -- "*" Author : authors
+Book "1" -- "*" Genre : genres
+SecurityConfig ..> JwtAuthenticationFilter : uses
+UserService ..> User : manages
+
+@enduml
